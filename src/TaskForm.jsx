@@ -42,7 +42,7 @@ function TaskForm({ onTaskCreated }) {
   };
 
   return (
-    <div>
+    <div className="w600">
       <h2>➕ Crear Tarea</h2>
       {message && <p>{message}</p>}
       <form onSubmit={handleSubmit}>
@@ -65,6 +65,9 @@ function TaskForm({ onTaskCreated }) {
         <button type="submit">Crear Tarea</button>
         <Link id="tareas" className="hidden" type="button" to={`/tasks`}>
           Tareas
+        </Link>
+        <Link className="" to={`/tasks`}>
+          Cancel
         </Link>
       </form>
     </div>

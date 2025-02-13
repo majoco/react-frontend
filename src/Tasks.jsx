@@ -110,40 +110,6 @@ function TaskList() {
     }
   };
 
-  /*const handleSaveClick = async () => {
-    if (editingTask) {
-      try {
-        const response = await fetch(
-          `https://localhost:3000/tasks/${editingTask.id}`,
-          {
-            method: "PUT",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ title: updatedTitle }),
-          }
-        );
-
-        if (response.ok) {
-          // Actualizar la lista de tareas con el título editado
-          setTasks((prevTasks) =>
-            prevTasks.map((task) =>
-              task.id === editingTask.id
-                ? { ...task, title: updatedTitle }
-                : task
-            )
-          );
-          setEditingTask(null); // Limpiar el formulario de edición
-          setUpdatedTitle("");
-        } else {
-          console.error("Error updating task");
-        }
-      } catch (error) {
-        console.error("Error:", error);
-      }
-    }
-  };*/
-
   return (
     <div className="w600">
       {ultasks && <h2>📋 Lista de Tareas</h2>}
