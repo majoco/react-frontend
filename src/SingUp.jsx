@@ -18,10 +18,14 @@ const SignUp = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        if (data.token) {
+        console.log(data);
+        if (data.message == "Usuario registrado exitosamente") {
           //localStorage.setItem("token", data.token); // Guardar token
           console.log("Registro exitoso");
           alert("Registro exitoso");
+          document.getElementById("home").click();
+        } else if (data.error == "El usuario ya existe") {
+          alert("Usuario ya existe");
         }
       });
 
@@ -70,6 +74,9 @@ const SignUp = () => {
         <button type="submit">Sign Up</button>
         <Link type="button" to={`/`}>
           Back
+        </Link>
+        <Link id="home" className="hidden" type="button" to={`/`}>
+          Home
         </Link>
       </form>
     </div>
