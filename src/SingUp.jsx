@@ -3,18 +3,22 @@ import "./App.css";
 import { Link } from "react-router-dom";
 
 const SignUp = () => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [mensaje, setMensaje] = useState("");
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("enviado");
 
+    setError("");
+    setMensaje("");
+
     fetch("http://localhost:3000/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username: email, password }),
+      body: JSON.stringify({ username, password }),
     })
       .then((response) => response.json())
       .then((data) => {
@@ -22,10 +26,16 @@ const SignUp = () => {
         if (data.message == "Usuario registrado exitosamente") {
           //localStorage.setItem("token", data.token); // Guardar token
           console.log("Registro exitoso");
-          alert("Registro exitoso");
-          document.getElementById("home").click();
+          //alert("Registro exitoso");
+          setMensaje("Registro exitoso");
+          setUsername("");
+          setPassword("");
+          //document.getElementById("home").click();
         } else if (data.error == "El usuario ya existe") {
-          alert("Usuario ya existe");
+          //alert("Usuario ya existe");
+          setError("Usuario ya existe");
+        } else {
+          setError("Error");
         }
       });
 
@@ -47,23 +57,17 @@ const SignUp = () => {
     <div>
       <h1>SignUp</h1>
       <form onSubmit={handleSubmit}>
+        <p id="label_mensaje" className="label">
+          {mensaje}
+        </p>
+        <p id="label_error" className="label">
+          {error}
+        </p>
         <input
           type="text"
-          value={firstName}
-          onChange={(e) => setFirstName(e.target.value)}
-          placeholder="Nombre"
-        />
-        <input
-          type="text"
-          value={lastName}
-          onChange={(e) => setLastName(e.target.value)}
-          placeholder="Apellido"
-        />
-        <input
-          type="text"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Email"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          placeholder="Usuario"
         />
         <input
           type="password"

@@ -7,7 +7,7 @@ import SignIn from "./SignIn";
 import SignUp from "./SingUp";
 import TaskForm from "./TaskForm";
 import TaskList from "./Tasks";
-import TaskFormEdit from "./TaskFormEdit";
+import EditTask from "./EditTask";
 
 createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -18,7 +18,7 @@ createRoot(document.getElementById("root")).render(
         <Route path="/signup" element={<SignUp />} />
         <Route path="/tasks" element={<TaskList />} />
         <Route path="/taskform" element={<TaskForm />} />
-        <Route path="/taskformedit" element={<TaskFormEdit />} />
+        <Route path="/edittask" element={<EditTask />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

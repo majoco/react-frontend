@@ -1,15 +1,15 @@
 import { useState } from "react";
 import PropTypes from "prop-types"; // Importar PropTypes
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function TaskFormEdit({ onTaskUpdated }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [message, setMessage] = useState("");
 
-  const { id } = useParams();
+  //const [id, setId]  = useState(-1);
 
-  console.log(id);
+  console.log(onTaskUpdated);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -20,7 +20,7 @@ function TaskFormEdit({ onTaskUpdated }) {
       return;
     }
 
-    const response = await fetch("http://localhost:3000/tasks/" + id, {
+    const response = await fetch("http://localhost:3000/tasks/", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
