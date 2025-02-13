@@ -110,6 +110,58 @@ function TaskList() {
     }
   };
 
+  const handleEliminar = async () => {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      setMessage("No hay sesión activa. Inicia sesión.");
+      return;
+    }
+
+    const response = await fetch("http://localhost:3000/tasks/" + id, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    const data = await response.json();
+    if (response.ok) {
+      setMessage("✅ Tarea eliminada exitosamente");
+      setTitle("");
+      setDescription("");
+
+      //document.getElementById("form_edit").className="hidden";
+      setEditingTask(null);
+      setUltasks(true);
+
+      fetch("http://localhost:3000/tasks", {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.tasks) {
+            setTasks(data.tasks);
+          } else {
+            setError("Error al obtener tareas");
+          }
+        })
+        .catch(() => setError("Error al conectar con el servidor"));
+
+      //document.getElementById("tareas").click();
+
+      /*if (onTaskUpdated) {
+        onTaskUpdated(); // Llama a la función si está definida
+      }*/
+    } else {
+      setMessage(`❌ Error: ${data.error || "No se pudo eliminar la tarea"}`);
+    }
+  };
+
   return (
     <div className="w600">
       {ultasks && <h2>📋 Lista de Tareas</h2>}
@@ -131,6 +183,12 @@ function TaskList() {
             <li key={task.id}>
               <p>
                 <strong>{task.title}</strong> {task.description}
+                <button
+                  className="btn_edit"
+                  onClick={() => handleEliminar(task)}
+                >
+                  Eliminar
+                </button>
                 <button
                   className="btn_edit"
                   onClick={() => handleEditClick(task)}
