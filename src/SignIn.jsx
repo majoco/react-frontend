@@ -38,11 +38,13 @@ const SignIn = () => {
           type="text"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          placeholder="Email"
         />
         <input
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          placeholder="Password"
         />
         <button type="submit">Sign In</button>
         <Link type="button" to={`/`}>
