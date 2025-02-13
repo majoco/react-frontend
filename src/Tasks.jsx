@@ -47,7 +47,7 @@ function TaskList() {
     setMessage("");
   };
 
-  const handleCancel = (task) => {
+  const handleCancel = () => {
     setEditingTask(null);
     setId(-1);
     setTitle("");
