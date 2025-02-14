@@ -110,20 +110,32 @@ function TaskList() {
     }
   };
 
-  const handleEliminar = async () => {
+  const handleEliminar = async (task) => {
     const token = localStorage.getItem("token");
+
+    console.log(token);
+
+    console.log(id);
+
+    console.log(task.id);
+
+    setId(task.id);
+    setTitle(task.title);
+    setDescription(task.description);
+    setMessage("");
 
     if (!token) {
       setMessage("No hay sesión activa. Inicia sesión.");
       return;
     }
 
-    const response = await fetch("http://localhost:3000/tasks/" + id, {
+    const response = await fetch("http://localhost:3000/tasks/" + task.id, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
+      body: JSON.stringify({ title, description }),
     });
 
     const data = await response.json();

@@ -45,7 +45,7 @@ const SignIn = () => {
 
   return (
     <div>
-      <h1>SignIn</h1>
+      <h1>Login</h1>
       <form onSubmit={handleSubmit}>
         <p id="label_error" className="label">
           {error}
@@ -64,9 +64,9 @@ const SignIn = () => {
           placeholder="Password"
           required
         />
-        <button type="submit">Sign In</button>
+        <button type="submit">Ingresar</button>
         <Link type="button" to={`/`}>
-          Back
+          Atras
         </Link>
         <Link id="tareas" className="hidden" type="button" to={`/tasks`}>
           Tareas

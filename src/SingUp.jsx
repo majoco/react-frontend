@@ -55,7 +55,7 @@ const SignUp = () => {
 
   return (
     <div>
-      <h1>SignUp</h1>
+      <h1>Registro</h1>
       <form onSubmit={handleSubmit}>
         <p id="label_mensaje" className="label">
           {mensaje}
@@ -75,9 +75,9 @@ const SignUp = () => {
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"
         />
-        <button type="submit">Sign Up</button>
+        <button type="submit">Registrarse</button>
         <Link type="button" to={`/`}>
-          Back
+          Atras
         </Link>
         <Link id="home" className="hidden" type="button" to={`/`}>
           Home

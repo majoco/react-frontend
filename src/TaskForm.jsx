@@ -67,7 +67,7 @@ function TaskForm({ onTaskCreated }) {
           Tareas
         </Link>
         <Link className="" to={`/tasks`}>
-          Cancel
+          Atras
         </Link>
       </form>
     </div>
