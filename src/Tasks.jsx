@@ -56,6 +56,11 @@ function TaskList() {
     setMessage("");
   };
 
+  const handleLogout = async () => {
+    localStorage.removeItem("token"); // Or remove from cookies/sessionStorage
+    document.getElementById("tareas").click();
+  };
+
   const handleSubmitEdit = async (e) => {
     e.preventDefault();
     const token = localStorage.getItem("token");
@@ -174,8 +179,19 @@ function TaskList() {
     }
   };
 
+  const token = localStorage.getItem("token");
+
   return (
     <div className="w600">
+      <div className="info">
+        {token ? (
+          <button className="btn_edit" onClick={() => handleLogout()}>
+            Logout
+          </button>
+        ) : (
+          ""
+        )}
+      </div>
       {ultasks && <h2>📋 Lista de Tareas</h2>}
       {!ultasks && <h2>📋 Editar Tarea</h2>}
       {error && <p style={{ color: "red" }}>{error}</p>}
@@ -212,6 +228,16 @@ function TaskList() {
           ))}
         </ul>
       )}
+
+      <a
+        id="tareas"
+        className="hidden"
+        type="button"
+        href="/tasks"
+        data-discover="true"
+      >
+        Tareas
+      </a>
 
       {editingTask && (
         <form id="form_edit" onSubmit={handleSubmitEdit}>
