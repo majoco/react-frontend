@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import PropTypes from "prop-types"; // Importar PropTypes
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 function TaskList() {
@@ -119,9 +119,9 @@ function TaskList() {
 
     console.log(task.id);
 
-    setId(task.id);
+    /*setId(task.id);
     setTitle(task.title);
-    setDescription(task.description);
+    setDescription(task.description);*/
     setMessage("");
 
     if (!token) {
