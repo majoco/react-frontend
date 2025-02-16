@@ -13,6 +13,8 @@ function TaskList() {
   const [description, setDescription] = useState("");
   const [message, setMessage] = useState("");
 
+  const [profile, setProfile] = useState("");
+
   useEffect(() => {
     const token = localStorage.getItem("token");
 
@@ -34,6 +36,24 @@ function TaskList() {
         } else {
           setError("Error al obtener tareas");
         }
+      })
+      .catch(() => setError("Error al conectar con el servidor"));
+
+    fetch("http://localhost:3000/profile", {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data.user.username);
+        setProfile(data.user.username);
+        /*if (data.tasks) {
+          setTasks(data.tasks);
+        } else {
+          setError("Error al obtener profile");
+        }*/
       })
       .catch(() => setError("Error al conectar con el servidor"));
   }, []);
@@ -186,7 +206,7 @@ function TaskList() {
       <div className="info">
         {token ? (
           <button className="btn_edit" onClick={() => handleLogout()}>
-            Logout
+            Logout {profile}
           </button>
         ) : (
           ""
